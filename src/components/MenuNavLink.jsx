@@ -5,8 +5,8 @@ const MenuNavLink = ({ path, name }) => {
     <NavLink
       to={path}
       className={({ isActive }) =>
-        `block py-2 px-3 rounded md:p-0 text-white ${
-          isActive && "bg-slate-500 "
+        `block rounded py-2 px-3 md:px-1 md:py-0 text-white ${
+          isActive && "bg-slate-500"
         }`
       }
     >

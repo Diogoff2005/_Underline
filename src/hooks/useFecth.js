@@ -7,7 +7,7 @@ export const useFetch = (url) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(url)
+    fetch(`https://moviesfunctionapp.azurewebsites.net/api/${url}`)
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((err) => {

@@ -13,7 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/movie-details" element={<MovieDetails />} />
+        <Route path="/movie-details" element={<MovieDetails />}>
+          <Route path=":id" element={<MovieDetails />} />
+        </Route>
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="*" element={<PageNotFound />} />
