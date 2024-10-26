@@ -1,5 +1,11 @@
+import Layout from "../components/Layout";
+
 const Movies = () => {
-  return <h1>Movies</h1>;
+  return (
+    <Layout>
+      <h1>Movies</h1>
+    </Layout>
+  );
 };
 
 export default Movies;

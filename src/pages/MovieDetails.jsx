@@ -1,5 +1,11 @@
+import Layout from "../components/Layout";
+
 const MovieDetails = () => {
-  return <h1>Movie Details</h1>;
+  return (
+    <Layout>
+      <h1>Movie Details</h1>
+    </Layout>
+  );
 };
 
 export default MovieDetails;
