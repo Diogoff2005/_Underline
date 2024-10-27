@@ -26,7 +26,7 @@ const Hero = () => {
                 {headline.description}
               </p>
               <Link to={`/movie-details/${headline.id}`}>
-                <button className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">
+                <button className="bg-gray-900  hover:bg-gray-800  text-white font-semibold py-2 px-4 rounded-lg transition duration-300">
                   See details
                 </button>
               </Link>

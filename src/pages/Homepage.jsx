@@ -1,15 +1,16 @@
 import Hero from "../components/Hero";
 import LastReviews from "../components/LastReviews";
 import Layout from "../components/Layout";
-import { useFetch } from "../hooks/useFecth";
 
 const Homepage = () => {
-  const [isLoading, errorMessage, headline] = useFetch("GetHeadline");
-
   return (
     <Layout>
       <Hero />
-      <LastReviews />
+      <div className="flex items-center justify-center">
+        <div className="max-w-[1200px] w-full py-14 px-4">
+          <LastReviews />
+        </div>
+      </div>
     </Layout>
   );
 };

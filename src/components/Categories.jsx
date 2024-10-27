@@ -35,7 +35,7 @@ const Categories = ({ handleCheckboxChange }) => {
             <aside
               className={`${
                 isSidebarOpen ? "block" : "hidden"
-              } md:block md:w-1/5 bg-white md:bg-transparent p-4 md:p-0 md:relative md:flex-shrink-0`}
+              } md:block md:w-1/5 bg-white md:bg-transparent p-0 md:p-0 md:relative md:flex-shrink-0`}
             >
               <h3 className="font-bold text-xl mb-4">Category</h3>
               <ul>
@@ -48,7 +48,9 @@ const Categories = ({ handleCheckboxChange }) => {
                         handleCheckboxChange(category);
                       }}
                     />
-                    <span className="text-l font-semibold">{category}</span>
+                    <span className="text-l font-semibold whitespace-nowrap">
+                      {category}
+                    </span>
                   </li>
                 ))}
               </ul>
