@@ -12,7 +12,10 @@ const MovieDetailsLayout = ({ id, favorites, toggleFavorite }) => {
       {movie && (
         <div className="flex w-full flex-wrap">
           <div className="w-full md:w-1/5 justify-center items-center">
-            <img src={movie.posterUrl} className="w-[220px] h-[326px]r" />
+            <img
+              src={movie.posterUrl}
+              className="w-[220px] h-[326px] mx-auto md:mx-0"
+            />
           </div>
           <div className="w-full md:w-4/5 md:pt-0 pt-4 pl-0 md:pl-6">
             <div className="flex ">

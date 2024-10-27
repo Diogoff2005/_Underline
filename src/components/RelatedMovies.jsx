@@ -17,7 +17,7 @@ const RelatedMovies = ({ id, favorites, toggleFavorite }) => {
       {isLoading && <Loader />}
       {errorMessage && <Loader message={errorMessage} />}
       {movies && movies.length != 0 ? (
-        <section className=" flex flex-wrap gap-6 pt-4">
+        <section className=" flex flex-wrap gap-6 pt-4 md:justify-normal justify-center">
           {movies.map((movie, index) => (
             <Movie
               key={index}

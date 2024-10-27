@@ -64,7 +64,7 @@ const Movies = () => {
             {!movies || movies.length === 0 ? (
               <h3 className="text-xl">No Results Found</h3>
             ) : (
-              <section className=" flex flex-wrap gap-6">
+              <section className=" flex flex-wrap gap-6 md:justify-normal justify-center">
                 {movies.map((movie, index) => (
                   <Movie
                     key={index}
