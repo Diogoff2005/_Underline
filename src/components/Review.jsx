@@ -1,14 +1,16 @@
 const Review = ({ review }) => {
   return (
-    <div>
-      <div>
-        <h3>{review.title}</h3>
-        <p>{review.rating}</p>
+    <div className="">
+      <div className="flex justify-between">
+        <h3 className="font-semibold  text-2xl">{review.title}</h3>
+        <p className="bg-yellow-500 text-white w-8 h-8 flex items-center justify-center rounded">
+          {review.rating}
+        </p>
       </div>
-      <p>{review.movie}</p>
+      <p className="font-bold text-xl py-2">{review.movie}</p>
       <p>{review.text}</p>
-      <p>
-        {review.first_name} {review.last_name} {review.email}
+      <p className="text-sm text-gray-500 py-2">
+        {review.first_name} {review.last_name} - {review.email}
       </p>
     </div>
   );

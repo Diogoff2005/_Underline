@@ -17,10 +17,10 @@ const Hero = () => {
             <img
               src={headline.image}
               alt="Hero Background"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover bg-fixed"
             />
             {/* Hero Content */}
-            <div className="relative z-10 text-white p-8 text-left max-w-[1200px] w-full">
+            <div className="relative z-10 text-white px-4 text-left max-w-[1200px] w-full">
               <h1 className="text-5xl font-bold mb-4">{headline.title}</h1>
               <p className="text-lg mb-6 break-words max-w-[400px]">
                 {headline.description}
