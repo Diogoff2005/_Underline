@@ -5,11 +5,14 @@ import Movie from "../components/Movie";
 import { useFetch } from "../hooks/useFecth";
 import Loader from "../components/Loader";
 import useFavourites from "../hooks/useFavourites";
+import MoviesHeader from "../components/MoviesHeader";
+import CategoriesButton from "../components/CategoriesButtons";
 
 const Movies = () => {
   const [query, setQuery] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const [isLoading, errorMessage, movies] = useFetch(`GetMovies?${query}`);
   const [favorites, toggleFavorite] = useFavourites();
@@ -39,25 +42,41 @@ const Movies = () => {
     setSelectedOption(selectedValue);
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <Layout>
       <div className="flex items-center justify-center ">
         <div className=" flex flex-col min-h-screen  md:flex-row max-w-[1200px] w-full px-4 md:py-14 py-4">
           <div className="w-full md:w-1/5">
-            <Categories handleCheckboxChange={handleCheckboxChange} />
+            <div className="md:hidden w-full flex items-center">
+              <CategoriesButton
+                isSidebarOpen={isSidebarOpen}
+                toggleSidebar={toggleSidebar}
+              />
+              <div className="w-full pl-4">
+                <MoviesHeader
+                  handleSelectChange={handleSelectChange}
+                  selectedOption={selectedOption}
+                  isMobile={true}
+                />
+              </div>
+            </div>
+            <div className="md:w-auto w-full md:pb-0 pb-4">
+              <Categories
+                handleCheckboxChange={handleCheckboxChange}
+                isSidebarOpen={isSidebarOpen}
+              />
+            </div>
           </div>
           <div className="w-full md:w-4/5">
-            <div className="flex justify-between pb-8">
-              <h2 className="text-2xl font-bold">All Movies</h2>
-              <select
-                onChange={handleSelectChange}
-                className="bg-gray-900 shadow-md hover:bg-gray-800 text-white rounded px-3 py-2 text-sm transition-colors duration-200"
-                value={selectedOption}
-              >
-                <option value="relevance">Relevance</option>
-                <option value="name">Name</option>
-                <option value="year">Year</option>
-              </select>
+            <div className="hidden md:block">
+              <MoviesHeader
+                handleSelectChange={handleSelectChange}
+                selectedOption={selectedOption}
+              />
             </div>
             {isLoading && <Loader />}
             {errorMessage && <Loader message={errorMessage} />}

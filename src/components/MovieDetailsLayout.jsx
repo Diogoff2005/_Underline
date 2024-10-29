@@ -18,7 +18,7 @@ const MovieDetailsLayout = ({ id, favorites, toggleFavorite }) => {
             />
           </div>
           <div className="w-full md:w-4/5 md:pt-0 pt-4 pl-0 md:pl-6">
-            <div className="flex ">
+            <div className="flex justify-between">
               <h2 className="font-bold text-3xl">{movie.title}</h2>
               <div className="flex items-center pl-4">
                 <div

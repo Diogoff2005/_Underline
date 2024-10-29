@@ -24,8 +24,9 @@ const MovieDetails = () => {
             favorites={favorites}
             toggleFavorite={toggleFavorite}
           />
-          <div className="h-10" />
-          <LastReviews id={id} />
+          <div className="py-10">
+            <LastReviews id={id} />
+          </div>
         </div>
       </div>
     </Layout>
