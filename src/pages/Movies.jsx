@@ -42,7 +42,7 @@ const Movies = () => {
   return (
     <Layout>
       <div className="flex items-center justify-center ">
-        <div className=" flex flex-col md:flex-row max-w-[1200px] w-full px-4 md:py-14 py-4">
+        <div className=" flex flex-col min-h-screen  md:flex-row max-w-[1200px] w-full px-4 md:py-14 py-4">
           <div className="w-full md:w-1/5">
             <Categories handleCheckboxChange={handleCheckboxChange} />
           </div>

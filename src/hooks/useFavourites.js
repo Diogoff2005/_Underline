@@ -4,12 +4,13 @@ const useFavourites = () => {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const savedFavorites =
+      JSON.parse(sessionStorage.getItem("favorites")) || [];
     setFavorites(savedFavorites);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    sessionStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   const toggleFavorite = (id) => {
