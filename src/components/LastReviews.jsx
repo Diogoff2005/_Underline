@@ -7,9 +7,7 @@ const LastReviews = ({ id = "" }) => {
 
   return (
     <>
-      <h2 className={`font-bold mb-2 ${id ? "text-2xl" : "text-3xl"}`}>
-        Last Reviews:
-      </h2>
+      <h2 className={`font-bold mb-2 text-2xl`}>Last Reviews:</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {isLoading && <Loader />}
         {errorMessage && <Loader message={errorMessage} />}
