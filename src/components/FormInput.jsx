@@ -11,7 +11,7 @@ const FormInput = ({
   title,
 }) => {
   return (
-    <label className="block mb-2 text-sm font-medium text-gray-700">
+    <label className="block text-sm font-medium text-gray-700">
       {label}
       {type !== "textarea" ? (
         <input
@@ -25,7 +25,7 @@ const FormInput = ({
           title={title}
           min={min}
           max={max}
-          className="block w-full mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+          className="block w-full p-3 mb-2 border border-gray-300 rounded-md focus:outline-none focus:border-gray-900"
         />
       ) : (
         <textarea
@@ -34,7 +34,7 @@ const FormInput = ({
           value={value}
           required
           placeholder="Write your review here"
-          className="block w-full mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+          className="block w-full p-3 border h-full border-gray-300 rounded-md focus:outline-none focus:border-gray-900"
           rows="4"
         />
       )}

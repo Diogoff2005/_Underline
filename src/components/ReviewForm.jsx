@@ -9,6 +9,8 @@ const ReviewForm = () => {
   );
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+  const [submitSuccess, setSubmitSuccess] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +29,8 @@ const ReviewForm = () => {
       lastName: e.target.lastName.value,
     };
 
+    setSubmitError(false);
+    setSubmitSuccess(false);
     setIsSubmitting(true);
 
     fetch(`https://moviesfunctionapp.azurewebsites.net/api/SubmitReview`, {
@@ -37,82 +41,109 @@ const ReviewForm = () => {
       body: JSON.stringify(formData),
     })
       .then((response) => {
-        console.log(response);
+        setSubmitSuccess(response.status);
         e.target.reset();
+      })
+      .catch((err) => {
+        setSubmitError(err);
       })
       .finally(() => setIsSubmitting(false));
   };
 
   return (
-    <form className="max-w-xl mx-auto pb-14" onSubmit={handleSubmit}>
-      <h1 className="text-2xl font-bold mb-6">Submit Review</h1>
-      <FormInput
-        label={"Title"}
-        type={"text"}
-        placeholder={"Enter the title of your review"}
-        name={"title"}
-      />
-      <FormInput
-        label={"Review"}
-        type={"textarea"}
-        placeholder={"Enter the title of your review"}
-        name={"text"}
-      />
-      {isLoading && <Loader />}
-      {errorMessage && <Loader message={errorMessage} />}
-      {movies && (
-        <label className="block mb-2 text-sm font-medium text-gray-700">
-          Movie
-          <select
-            name="movieId"
-            className="block w-full mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-          >
-            {movies.map((movie, index) => (
-              <option
-                key={index}
-                name={movie.id}
-                value={movie.id}
-                data-name={movie.title}
+    <form className="pb-10" onSubmit={handleSubmit}>
+      <h1 className="text-2xl w-full font-bold mb-6">Submit Review</h1>
+      <div className="flex md:flex-row flex-col md:gap-6 gap-0">
+        <div className="flex md:w-1/3 w-full flex-col">
+          <FormInput
+            label={"Title"}
+            type={"text"}
+            placeholder={"Enter the title of your review"}
+            name={"title"}
+          />
+          {isLoading && <Loader />}
+          {errorMessage && <Loader message={errorMessage} />}
+          {movies && (
+            <label className="block mb-2 text-sm font-medium text-gray-700">
+              Movie
+              <select
+                name="movieId"
+                className="block w-full mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:border-gray-900"
               >
-                {movie.title}
-              </option>
-            ))}
-          </select>
-        </label>
+                {movies.map((movie, index) => (
+                  <option
+                    key={index}
+                    name={movie.id}
+                    value={movie.id}
+                    data-name={movie.title}
+                  >
+                    {movie.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+        </div>
+        <div className="md:w-2/3 w-full flex flex-col max-h-full">
+          <FormInput
+            label={"Review"}
+            type={"textarea"}
+            placeholder={"Enter the title of your review"}
+            name={"text"}
+          />
+        </div>
+      </div>
+      <div className="w-full flex md:flex-row flex-col md:gap-6 gap-0 mt-2 md:items-center items-start">
+        <div className="md:w-1/4 w-full">
+          <FormInput
+            label={"First Name"}
+            type={"text"}
+            placeholder={"Enter your first name"}
+            name={"firstName"}
+          />
+        </div>
+        <div className="md:w-1/4 w-full">
+          <FormInput
+            label={"Last Name"}
+            type={"text"}
+            placeholder={"Enter your last name"}
+            name={"lastName"}
+          />
+        </div>
+        <div className="md:w-1/4 w-full">
+          <FormInput
+            label={"Email"}
+            type={"email"}
+            placeholder={"Enter your email"}
+            name={"email"}
+          />
+        </div>
+        <div className="md:w-1/4 w-full">
+          <FormInput
+            label={"Rating (0 to 5)"}
+            type={"number"}
+            min="0"
+            max="5"
+            placeholder={"Enter the moovie rating"}
+            name={"rating"}
+          />
+        </div>
+      </div>
+      <div className="flex flex-col md:w-1/6 w-full">
+        <button
+          disabled={isSubmitting}
+          type="submit"
+          className={`w-full py-3 mt-2 px-4 bg-gray-900 text-sm text-white font-semibold rounded-lg ${!isSubmitting && "hover:bg-gray-800"}`}
+        >
+          {isSubmitting ? "Submitting..." : "Submit Review"}
+        </button>
+      </div>
+      {submitError && (
+        <p className="text-l pt-2 font-medium">{submitError.toString()}</p>
       )}
-      <FormInput
-        label={"Rating (0 to 5)"}
-        type={"number"}
-        min="0"
-        max="5"
-        placeholder={"Enter your email"}
-        name={"rating"}
-      />
-      <FormInput
-        label={"First Name"}
-        type={"text"}
-        placeholder={"Enter your first name"}
-        name={"firstName"}
-      />
-      <FormInput
-        label={"Last Name"}
-        type={"text"}
-        placeholder={"Enter your last name"}
-        name={"lastName"}
-      />
-      <FormInput
-        label={"Email"}
-        type={"email"}
-        placeholder={"Enter your email"}
-        name={"email"}
-      />
-      <button
-        disabled={isSubmitting}
-        type="submit"
-        className="w-full py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400"
-      >
-        {isSubmitting ? "Submitting..." : "Submit Review"}
-      </button>
+      {submitSuccess && submitSuccess == "200" && (
+        <p className="text-l pt-2 font-medium">Review submetida com sucesso!</p>
+      )}
     </form>
   );
 };
