@@ -1,9 +1,9 @@
 import Loader from "../components/Loader";
-import { useFetch } from "../hooks/useFecth";
 import { Link } from "react-router-dom";
+import { useFetchGet } from "../hooks/useFecthGet";
 
 const Hero = () => {
-  const [isLoading, errorMessage, headline] = useFetch("GetHeadline");
+  const [isLoading, errorMessage, headline] = useFetchGet("GetHeadline");
 
   return (
     <>

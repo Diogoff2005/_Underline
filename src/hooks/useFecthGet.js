@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 //Call API
-export const useFetch = (url) => {
+export const useFetchGet = (url) => {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState(null);

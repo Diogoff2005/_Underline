@@ -1,9 +1,9 @@
 import Heart from "./Hearth";
-import { useFetch } from "../hooks/useFecth";
 import Loader from "../components/Loader";
+import { useFetchGet } from "../hooks/useFecthGet";
 
 const MovieDetailsLayout = ({ id, favorites, toggleFavorite }) => {
-  const [isLoading, errorMessage, movie] = useFetch(`GetMovies?id=${id}`);
+  const [isLoading, errorMessage, movie] = useFetchGet(`GetMovies?id=${id}`);
 
   return (
     <>

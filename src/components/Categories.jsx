@@ -1,8 +1,8 @@
 import Loader from "./Loader";
-import { useFetch } from "../hooks/useFecth";
+import { useFetchGet } from "../hooks/useFecthGet";
 
 const Categories = ({ handleCheckboxChange, isSidebarOpen }) => {
-  const [isLoading, errorMessage, categories] = useFetch("GetGenres");
+  const [isLoading, errorMessage, categories] = useFetchGet("GetGenres");
 
   return (
     <>

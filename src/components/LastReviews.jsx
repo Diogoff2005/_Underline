@@ -1,9 +1,9 @@
 import Loader from "../components/Loader";
-import { useFetch } from "../hooks/useFecth";
+import { useFetchGet } from "../hooks/useFecthGet";
 import Review from "./Review";
 
 const LastReviews = ({ id = "" }) => {
-  const [isLoading, errorMessage, reviews] = useFetch(`GetReviews?id=${id}`);
+  const [isLoading, errorMessage, reviews] = useFetchGet(`GetReviews?id=${id}`);
 
   return (
     <>

@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import { useState, useEffect } from "react";
 import Categories from "../components/Categories";
 import Movie from "../components/Movie";
-import { useFetch } from "../hooks/useFecth";
+import { useFetchGet } from "../hooks/useFecthGet";
 import Loader from "../components/Loader";
 import useFavourites from "../hooks/useFavourites";
 import MoviesHeader from "../components/MoviesHeader";
@@ -14,7 +14,7 @@ const Movies = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const [isLoading, errorMessage, movies] = useFetch(`GetMovies?${query}`);
+  const [isLoading, errorMessage, movies] = useFetchGet(`GetMovies?${query}`);
   const [favorites, toggleFavorite] = useFavourites();
 
   useEffect(() => {

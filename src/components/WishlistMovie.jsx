@@ -1,9 +1,9 @@
-import { useFetch } from "../hooks/useFecth";
+import { useFetchGet } from "../hooks/useFecthGet";
 import Loader from "./Loader";
 import Movie from "./Movie";
 
 const WishlistMovie = ({ id, isFavourite, toggleFavorite }) => {
-  const [isLoading, errorMessage, movie] = useFetch(`GetMovies?id=${id}`);
+  const [isLoading, errorMessage, movie] = useFetchGet(`GetMovies?id=${id}`);
 
   return (
     <>

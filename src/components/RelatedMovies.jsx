@@ -1,10 +1,10 @@
-import { useFetch } from "../hooks/useFecth";
 import Loader from "../components/Loader";
 import Movie from "./Movie";
 import { Link } from "react-router-dom";
+import { useFetchGet } from "../hooks/useFecthGet";
 
 const RelatedMovies = ({ id, favorites, toggleFavorite }) => {
-  const [isLoading, errorMessage, movies] = useFetch(`GetRelated?id=${id}`);
+  const [isLoading, errorMessage, movies] = useFetchGet(`GetRelated?id=${id}`);
 
   return (
     <>
