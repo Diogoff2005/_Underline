@@ -6,7 +6,7 @@ const Reviews = () => {
   return (
     <Layout>
       <div className="flex items-center justify-center min-h-screen">
-        <div className="flex flex-col max-w-[1200px] w-full px-4 md:py-14 py-4 justify-center">
+        <div className="flex flex-col max-w-[1200px] w-full px-4 md:py-14 py-6 justify-center">
           <div>
             <ReviewForm />
           </div>
