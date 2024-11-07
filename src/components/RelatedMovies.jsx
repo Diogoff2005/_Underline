@@ -1,10 +1,15 @@
-import Loader from "../components/Loader";
 import Movie from "./Movie";
 import { Link } from "react-router-dom";
 import { useFetchGet } from "../hooks/useFecthGet";
 
-const RelatedMovies = ({ id, favorites, toggleFavorite }) => {
-  const [isLoading, errorMessage, movies] = useFetchGet(`GetRelated?id=${id}`);
+const RelatedMovies = ({
+  id,
+  favorites,
+  toggleFavorite,
+  handleLoading,
+  isLoading,
+}) => {
+  const movies = useFetchGet(`GetRelated?id=${id}`, isLoading, handleLoading);
 
   return (
     <>
@@ -14,8 +19,6 @@ const RelatedMovies = ({ id, favorites, toggleFavorite }) => {
           <p className="underline text-sm text-gray-500">See all</p>
         </Link>
       </div>
-      {isLoading && <Loader />}
-      {errorMessage && <Loader message={errorMessage} />}
       {movies && movies.length != 0 ? (
         <section className=" flex flex-wrap gap-6 pt-4 md:justify-normal justify-center">
           {movies.map((movie, index) => (

@@ -2,13 +2,17 @@ import Heart from "./Hearth";
 import Loader from "../components/Loader";
 import { useFetchGet } from "../hooks/useFecthGet";
 
-const MovieDetailsLayout = ({ id, favorites, toggleFavorite }) => {
-  const [isLoading, errorMessage, movie] = useFetchGet(`GetMovies?id=${id}`);
+const MovieDetailsLayout = ({
+  id,
+  favorites,
+  toggleFavorite,
+  handleLoading,
+  isLoading,
+}) => {
+  const movie = useFetchGet(`GetMovies?id=${id}`, isLoading, handleLoading);
 
   return (
     <>
-      {isLoading && <Loader />}
-      {errorMessage && <Loader message={errorMessage} />}
       {movie && (
         <div className="flex w-full flex-wrap">
           <div className="w-full md:w-1/5 justify-center items-center">

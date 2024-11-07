@@ -1,14 +1,13 @@
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
 import { useFetchGet } from "../hooks/useFecthGet";
+import { useEffect } from "react";
 
-const Hero = () => {
-  const [isLoading, errorMessage, headline] = useFetchGet("GetHeadline");
+const Hero = ({ handleLoading, isLoading }) => {
+  const headline = useFetchGet("GetHeadline", isLoading, handleLoading);
 
   return (
     <>
-      {isLoading && <Loader />}
-      {errorMessage && <Loader message={errorMessage} />}
       {
         /* Hero */
         headline && (

@@ -1,16 +1,13 @@
-import Loader from "../components/Loader";
 import { useFetchGet } from "../hooks/useFecthGet";
 import Review from "./Review";
 
-const LastReviews = ({ id = "" }) => {
-  const [isLoading, errorMessage, reviews] = useFetchGet(`GetReviews?id=${id}`);
+const LastReviews = ({ id = "", handleLoading, isLoading }) => {
+  const reviews = useFetchGet(`GetReviews?id=${id}`, isLoading, handleLoading);
 
   return (
     <>
       <h2 className={`font-bold mb-2 text-2xl`}>Last Reviews</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {isLoading && <Loader />}
-        {errorMessage && <Loader message={errorMessage} />}
         {
           /* Last Reviews */
           reviews && reviews.length != 0 ? (

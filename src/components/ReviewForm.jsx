@@ -1,12 +1,9 @@
 import { useState } from "react";
 import FormInput from "./FormInput";
-import Loader from "./Loader";
 import { useFetchGet } from "../hooks/useFecthGet";
 
-const ReviewForm = () => {
-  const [isLoading, errorMessage, movies] = useFetchGet(
-    `GetMovies?sortBy=name`
-  );
+const ReviewForm = ({ handleLoading, isLoading }) => {
+  const movies = useFetchGet(`GetMovies?sortBy=name`, isLoading, handleLoading);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
@@ -61,8 +58,6 @@ const ReviewForm = () => {
             placeholder={"Enter the title of your review"}
             name={"title"}
           />
-          {isLoading && <Loader />}
-          {errorMessage && <Loader message={errorMessage} />}
           {movies && (
             <label className="block mb-2 text-sm font-medium text-gray-700">
               Movie
