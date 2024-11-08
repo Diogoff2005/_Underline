@@ -10,7 +10,6 @@ const Wishlist = () => {
   const [isLoading, errorMessage, handleLoading] = useLoading();
 
   useEffect(() => {
-    debugger;
     favorites && favorites.length === 0 && handleLoading(false);
   }, [favorites]);
 
