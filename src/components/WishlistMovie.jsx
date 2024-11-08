@@ -4,7 +4,7 @@ import Movie from "./Movie";
 const WishlistMovie = ({
   id,
   isFavourite,
-  toggleFavorite,
+  toggleFavourite,
   isLoading,
   handleLoading,
 }) => {
@@ -16,7 +16,7 @@ const WishlistMovie = ({
         <Movie
           movie={movie}
           isFavourite={isFavourite}
-          addFavourite={toggleFavorite}
+          addFavourite={toggleFavourite}
         />
       )}
     </>

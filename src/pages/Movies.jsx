@@ -17,7 +17,7 @@ const Movies = () => {
 
   const [isLoading, errorMessage, handleLoading] = useLoading();
   const movies = useFetchGet(`GetMovies?${query}`, isLoading, handleLoading);
-  const [favorites, toggleFavorite] = useFavourites();
+  const [favourites, toggleFavourite] = useFavourites();
 
   useEffect(() => {
     const categoryQuery = selectedCategories.length
@@ -92,8 +92,8 @@ const Movies = () => {
                     <Movie
                       key={index}
                       movie={movie}
-                      isFavourite={favorites.includes(movie.id)}
-                      addFavourite={toggleFavorite}
+                      isFavourite={favourites.includes(movie.id)}
+                      addFavourite={toggleFavourite}
                     />
                   ))}
                 </section>

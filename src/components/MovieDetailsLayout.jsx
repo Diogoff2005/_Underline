@@ -4,8 +4,8 @@ import { useFetchGet } from "../hooks/useFecthGet";
 
 const MovieDetailsLayout = ({
   id,
-  favorites,
-  toggleFavorite,
+  favourites,
+  toggleFavourite,
   handleLoading,
   isLoading,
 }) => {
@@ -27,11 +27,11 @@ const MovieDetailsLayout = ({
               <div className="flex items-center pl-4">
                 <div
                   onClick={() => {
-                    toggleFavorite(movie.id);
+                    toggleFavourite(movie.id);
                   }}
                   className="p-1 bg-gray-900 rounded-full shadow-md hover:bg-gray-800 transition duration-200 cursor-pointer"
                 >
-                  <Heart isFilled={favorites.includes(movie.id)} />
+                  <Heart isFilled={favourites.includes(movie.id)} />
                 </div>
               </div>
             </div>

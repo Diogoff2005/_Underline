@@ -9,7 +9,7 @@ import Loader from "../components/Loader";
 
 const MovieDetails = () => {
   const { id } = useParams();
-  const [favorites, toggleFavorite] = useFavourites();
+  const [favourites, toggleFavourite] = useFavourites();
   const [isLoading, errorMessage, handleLoading] = useLoading();
 
   return (
@@ -20,16 +20,16 @@ const MovieDetails = () => {
           <div className=" flex flex-col max-w-[1200px] w-full px-4 md:py-14 py-4 ">
             <MovieDetailsLayout
               id={id}
-              favorites={favorites}
-              toggleFavorite={toggleFavorite}
+              favourites={favourites}
+              toggleFavourite={toggleFavourite}
               isLoading={isLoading}
               handleLoading={handleLoading}
             />
             <div className="h-10" />
             <RelatedMovies
               id={id}
-              favorites={favorites}
-              toggleFavorite={toggleFavorite}
+              favourites={favourites}
+              toggleFavourite={toggleFavourite}
               isLoading={isLoading}
               handleLoading={handleLoading}
             />

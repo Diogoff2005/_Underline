@@ -6,12 +6,12 @@ import Loader from "../components/Loader";
 import { useEffect } from "react";
 
 const Wishlist = () => {
-  const [favorites, toggleFavorite] = useFavourites();
+  const [favourites, toggleFavourite] = useFavourites();
   const [isLoading, errorMessage, handleLoading] = useLoading();
 
   useEffect(() => {
-    favorites && favorites.length === 0 && handleLoading(false);
-  }, [favorites]);
+    favourites && favourites.length === 0 && handleLoading(false);
+  }, [favourites]);
 
   return (
     <Layout>
@@ -21,15 +21,15 @@ const Wishlist = () => {
           <div className="max-w-[1200px] min-h-screen w-full px-4 md:py-14 py-4">
             <h1 className="text-2xl font-bold">Wishlist</h1>
             <section className=" flex flex-wrap gap-6 md:justify-normal justify-center pt-8">
-              {favorites && favorites.length !== 0 ? (
-                favorites.map(
+              {favourites && favourites.length !== 0 ? (
+                favourites.map(
                   (movieId, index) =>
                     movieId && (
                       <WishlistMovie
                         key={index}
                         id={movieId}
                         isFavourite={true}
-                        toggleFavorite={toggleFavorite}
+                        toggleFavourite={toggleFavourite}
                         isLoading={isLoading}
                         handleLoading={handleLoading}
                       />

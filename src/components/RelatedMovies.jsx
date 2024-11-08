@@ -4,8 +4,8 @@ import { useFetchGet } from "../hooks/useFecthGet";
 
 const RelatedMovies = ({
   id,
-  favorites,
-  toggleFavorite,
+  favourites,
+  toggleFavourite,
   handleLoading,
   isLoading,
 }) => {
@@ -25,8 +25,8 @@ const RelatedMovies = ({
             <Movie
               key={index}
               movie={movie}
-              isFavourite={favorites.includes(movie.id)}
-              addFavourite={toggleFavorite}
+              isFavourite={favourites.includes(movie.id)}
+              addFavourite={toggleFavourite}
             />
           ))}
         </section>
