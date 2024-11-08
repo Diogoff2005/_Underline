@@ -3,7 +3,7 @@ import Heart from "./Hearth";
 
 const Movie = ({ movie, isFavourite, addFavourite }) => {
   return (
-    <div className="bg-gray-900 text-white py-3 px-3 rounded-xl">
+    <div className="bg-gray-900 text-white py-3 px-3 rounded-xl  hover:scale-105 transition-transform duration-300 ease-in-out">
       <div
         onClick={() => {
           addFavourite(movie.id);

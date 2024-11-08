@@ -7,7 +7,6 @@ const useLoading = () => {
   const handleLoading = (loading, errorMessage) => {
     errorMessage && setErrorMessage(errorMessage);
     setIsLoading(loading);
-    console.log(loading);
   };
 
   return [isLoading, errorMessage, handleLoading];

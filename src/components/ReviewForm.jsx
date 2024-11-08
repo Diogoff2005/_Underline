@@ -9,25 +9,72 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
   const [submitError, setSubmitError] = useState(null);
   const [submitSuccess, setSubmitSuccess] = useState(null);
 
+  const [formData, setFormData] = useState({
+    title: "",
+    text: "",
+    movie: "",
+    movieId: "",
+    email: "",
+    rating: "",
+    firstName: "",
+    lastName: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === "movieId") {
+      const selectedOption = event.target.options[event.target.selectedIndex];
+      const dataName = selectedOption.getAttribute("data-name");
+      setFormData({
+        ...formData,
+        movie: dataName,
+      });
+    }
+    setFormData({ ...formData, [name]: value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = {
-      title: e.target.title.value,
-      text: e.target.text.value,
-      movie:
-        e.target.movieId.options[e.target.movieId.selectedIndex].getAttribute(
-          "data-name"
-        ),
-      movieId: e.target.movieId.value,
-      email: e.target.email.value,
-      rating: e.target.rating.value,
-      firstName: e.target.firstName.value,
-      lastName: e.target.lastName.value,
-    };
+    setSubmitError(null);
+    setSubmitSuccess(null);
 
-    setSubmitError(false);
-    setSubmitSuccess(false);
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
+
+    if (!formData.title) {
+      setSubmitError("Title is required");
+      return;
+    }
+
+    if (!formData.text) {
+      setSubmitError("Text is required");
+      return;
+    }
+
+    if (!formData.firstName) {
+      setSubmitError("First name required");
+      return;
+    }
+
+    if (!formData.lastName) {
+      setSubmitError("Last name required");
+      return;
+    }
+
+    if (!formData.email) {
+      setSubmitError("Email is required");
+      return;
+    } else if (!regex.test(formData.email)) {
+      setSubmitError("Invalid email format");
+      return;
+    }
+
+    if (!formData.rating) {
+      setSubmitError("Rating is required");
+      return;
+    }
+
     setIsSubmitting(true);
 
     fetch(`https://moviesfunctionapp.azurewebsites.net/api/SubmitReview`, {
@@ -39,7 +86,16 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
     })
       .then((response) => {
         setSubmitSuccess(response.status);
-        e.target.reset();
+        setFormData({
+          title: "",
+          text: "",
+          movie: "",
+          movieId: "",
+          email: "",
+          rating: "",
+          firstName: "",
+          lastName: "",
+        });
       })
       .catch((err) => {
         setSubmitError(err);
@@ -57,6 +113,8 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
             type={"text"}
             placeholder={"Enter the title of your review"}
             name={"title"}
+            handleChange={handleChange}
+            value={formData.title}
           />
           {movies && (
             <label className="block mb-2 text-sm font-medium text-gray-700">
@@ -64,11 +122,12 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
               <select
                 name="movieId"
                 className="block w-full mt-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:border-gray-900"
+                onChange={handleChange}
               >
                 {movies.map((movie, index) => (
                   <option
                     key={index}
-                    name={movie.id}
+                    name={"movieId"}
                     value={movie.id}
                     data-name={movie.title}
                   >
@@ -85,6 +144,8 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
             type={"textarea"}
             placeholder={"Enter the title of your review"}
             name={"text"}
+            handleChange={handleChange}
+            value={formData.text}
           />
         </div>
       </div>
@@ -95,6 +156,8 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
             type={"text"}
             placeholder={"Enter your first name"}
             name={"firstName"}
+            handleChange={handleChange}
+            value={formData.firstName}
           />
         </div>
         <div className="md:w-1/4 w-full">
@@ -103,6 +166,8 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
             type={"text"}
             placeholder={"Enter your last name"}
             name={"lastName"}
+            handleChange={handleChange}
+            value={formData.lastName}
           />
         </div>
         <div className="md:w-1/4 w-full">
@@ -111,6 +176,8 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
             type={"email"}
             placeholder={"Enter your email"}
             name={"email"}
+            handleChange={handleChange}
+            value={formData.email}
           />
         </div>
         <div className="md:w-1/4 w-full">
@@ -121,6 +188,8 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
             max="5"
             placeholder={"Enter the moovie rating"}
             name={"rating"}
+            handleChange={handleChange}
+            value={formData.rating}
           />
         </div>
       </div>
@@ -134,10 +203,12 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
         </button>
       </div>
       {submitError && (
-        <p className="text-l pt-2 font-medium">{submitError.toString()}</p>
+        <p className="text-l text-red-500 pt-2 font-medium">{submitError}</p>
       )}
       {submitSuccess && submitSuccess == "200" && (
-        <p className="text-l pt-2 font-medium">Review submetida com sucesso!</p>
+        <p className="text-l text-green-500 pt-2 font-medium">
+          Review submetida com sucesso!
+        </p>
       )}
     </form>
   );
