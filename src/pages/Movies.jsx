@@ -50,10 +50,10 @@ const Movies = () => {
 
   return (
     <Layout>
-      {isLoading && <Loader message={errorMessage} />}
+      {(isLoading || errorMessage) && <Loader message={errorMessage} />}
       <div hidden={isLoading}>
         <div className="flex items-center justify-center ">
-          <div className=" flex flex-col min-h-screen  md:flex-row max-w-[1200px] w-full px-4 md:py-14 py-4">
+          <div className=" flex flex-col min-h-screen md:flex-row max-w-[1200px] w-full px-4 md:py-14 py-4">
             <div className="w-full md:w-1/5">
               <div className="md:hidden w-full flex items-center">
                 <CategoriesButton

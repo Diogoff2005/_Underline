@@ -22,7 +22,6 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     if (name === "movieId") {
       const selectedOption = event.target.options[event.target.selectedIndex];
       const dataName = selectedOption.getAttribute("data-name");
@@ -46,22 +45,18 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
       setSubmitError("Title is required");
       return;
     }
-
     if (!formData.text) {
       setSubmitError("Text is required");
       return;
     }
-
     if (!formData.firstName) {
       setSubmitError("First name required");
       return;
     }
-
     if (!formData.lastName) {
       setSubmitError("Last name required");
       return;
     }
-
     if (!formData.email) {
       setSubmitError("Email is required");
       return;
@@ -69,14 +64,11 @@ const ReviewForm = ({ handleLoading, isLoading }) => {
       setSubmitError("Invalid email format");
       return;
     }
-
     if (!formData.rating) {
       setSubmitError("Rating is required");
       return;
     }
-
     setIsSubmitting(true);
-
     fetch(`https://moviesfunctionapp.azurewebsites.net/api/SubmitReview`, {
       method: "POST",
       headers: {

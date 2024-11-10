@@ -1,4 +1,3 @@
-import Loader from "./Loader";
 import { useFetchGet } from "../hooks/useFecthGet";
 
 const Categories = ({

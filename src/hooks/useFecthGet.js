@@ -7,7 +7,7 @@ export const useFetchGet = (url, isPageLoading, handleLoading) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    isPageLoading && !isPageLoading && isLoading && handleLoading(isLoading);
+    !isPageLoading && isLoading && handleLoading(isLoading);
   }, [isPageLoading]);
 
   useEffect(() => {

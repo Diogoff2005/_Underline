@@ -1,5 +1,4 @@
 import Heart from "./Hearth";
-import Loader from "../components/Loader";
 import { useFetchGet } from "../hooks/useFecthGet";
 
 const MovieDetailsLayout = ({
